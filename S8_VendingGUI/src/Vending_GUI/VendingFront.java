@@ -8,18 +8,19 @@ public class VendingFront extends javax.swing.JFrame {
     int tipo; 
     boolean vuelto = false; 
     /*
-    1 - coca
-    2 - Pepsi
-    3 - 7up
-    4 - sprite 
-    5 - diet 
-    6 - Water 
+    0 - coca
+    1 - Pepsi
+    2 - 7up
+    3 - sprite 
+    4 - diet 
+    5 - Water 
     */
     
     
     
     public VendingFront() {
         // JOptionPane.
+        JOptionPane.showMessageDialog(null, "Bienvenido a Vending GUI! \nPresione la bebida que desea");
         setLocation(500,150); 
         initComponents();
     }
@@ -95,7 +96,6 @@ public class VendingFront extends javax.swing.JFrame {
         ingresarDinero = new javax.swing.JTextField();
         btnCancelar = new javax.swing.JButton();
         btnAceptar = new javax.swing.JButton();
-        BotonInicio = new javax.swing.JButton();
         BotonCancelar = new javax.swing.JButton();
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
@@ -717,11 +717,6 @@ public class VendingFront extends javax.swing.JFrame {
         jPanel1.add(jPanel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(367, 86, -1, 0));
 
         ingresarDinero.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
-        ingresarDinero.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ingresarDineroActionPerformed(evt);
-            }
-        });
         jPanel1.add(ingresarDinero, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 50, 100, 20));
 
         btnCancelar.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
@@ -742,27 +737,16 @@ public class VendingFront extends javax.swing.JFrame {
         });
         jPanel1.add(btnAceptar, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 80, 36, 19));
 
-        BotonInicio.setBackground(new java.awt.Color(255, 255, 255));
-        BotonInicio.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        BotonInicio.setForeground(new java.awt.Color(0, 0, 0));
-        BotonInicio.setText("Iniciar");
-        BotonInicio.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                BotonInicioMouseClicked(evt);
-            }
-        });
-        jPanel1.add(BotonInicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 110, 90, 20));
-
-        BotonCancelar.setBackground(new java.awt.Color(204, 51, 0));
+        BotonCancelar.setBackground(new java.awt.Color(255, 255, 255));
         BotonCancelar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         BotonCancelar.setForeground(new java.awt.Color(0, 0, 0));
-        BotonCancelar.setText("Cancelar");
+        BotonCancelar.setText("Terminar");
         BotonCancelar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 BotonCancelarMouseClicked(evt);
             }
         });
-        jPanel1.add(BotonCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 130, 90, 20));
+        jPanel1.add(BotonCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 110, 100, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -778,16 +762,6 @@ public class VendingFront extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void ingresarDineroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ingresarDineroActionPerformed
-        // TODO add your handling code here:
-        
-    }//GEN-LAST:event_ingresarDineroActionPerformed
-
-    private void BotonInicioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BotonInicioMouseClicked
-        // TODO add your handling code here:
-        JOptionPane.showMessageDialog(this,"Presione la bebida que desea"); 
-    }//GEN-LAST:event_BotonInicioMouseClicked
-
     private void btnCancelarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelarMouseClicked
         // TODO add your handling code here:
         ingresarDinero.setText("");
@@ -801,14 +775,16 @@ public class VendingFront extends javax.swing.JFrame {
         ingresarDinero.setText(""); 
         double [] precios = {2.00, 2.00, 1.77, 3.00, 1.50, 0.99}; 
         double total = precios[tipo] - dinero; 
+        //2.00-2.00= 0
+        
         
         if (total == 0){
             JOptionPane.showMessageDialog(null, "Listo, Ingrese su dinero");
         }else if(total < 0){
-            JOptionPane.showMessageDialog(null, "Su vuelto seria: $"+(total*-1)+"Ingrese su dinero");
+            JOptionPane.showMessageDialog(null, "Su cambio seria: $"+(total*-1)+"\nIngrese su dinero");
             vuelto = true; 
         }else{
-            JOptionPane.showMessageDialog(null, "Le hace falta $"+total+" \nIngrese de nuevo el monto con el que desea pagar o cancele la transaccion");
+            JOptionPane.showMessageDialog(null, "Le hace falta $"+total+" \nIngrese de nuevo el monto o cancele la transaccion en el boton 'Terminar'");
         }
         
     }//GEN-LAST:event_btnAceptarMouseClicked
@@ -851,17 +827,19 @@ public class VendingFront extends javax.swing.JFrame {
 
     private void BotonCancelarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BotonCancelarMouseClicked
         // TODO add your handling code here:
+        System.exit(0); 
         
     }//GEN-LAST:event_BotonCancelarMouseClicked
 
     private void btnDineroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDineroMouseClicked
         // TODO add your handling code here:
         if (vuelto == true){
-            JOptionPane.showMessageDialog(null, "Listo, tome su bebida y su cambio");
+            JOptionPane.showMessageDialog(null, "Listo, tome su bebida y su cambio \nGracias por su preferencia!");
         }else{
-            JOptionPane.showMessageDialog(null, "Listo, tome su bebida");
+            JOptionPane.showMessageDialog(null, "Listo, tome su bebida \nGracias por su preferencia!");
             
         }
+        System.exit(0); 
         
     }//GEN-LAST:event_btnDineroMouseClicked
 
@@ -903,7 +881,6 @@ public class VendingFront extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BotonCancelar;
-    private javax.swing.JButton BotonInicio;
     private javax.swing.JButton btn7Up;
     private javax.swing.JButton btnAceptar;
     private javax.swing.JButton btnCancelar;
